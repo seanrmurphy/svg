@@ -1,9 +1,10 @@
 package transforms
 
 import (
-	"github.com/nathanhack/svg"
-	"github.com/nathanhack/svg/internal"
 	"strings"
+
+	"github.com/seanrmurphy/svg"
+	"github.com/seanrmurphy/svg/internal"
 )
 
 type Transform string

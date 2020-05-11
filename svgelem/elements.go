@@ -1,6 +1,6 @@
-package elem
+package svgelem
 
-import "github.com/nathanhack/svg"
+import "github.com/seanrmurphy/svg"
 
 type element struct {
 	svg.Core
@@ -69,6 +69,7 @@ func Animate(attrsOrElements ...svg.Component) svg.Element {
 func AnimateMotion(attrsOrElements ...svg.Component) svg.Element {
 	return Element("animateMotion", "", attrsOrElements...)
 }
+
 func Circle(attrsOrElements ...svg.Component) svg.Element {
 	return Element("circle", "", attrsOrElements...)
 }

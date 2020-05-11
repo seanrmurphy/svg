@@ -2,7 +2,7 @@ package svg
 
 import (
 	"github.com/gopherjs/vecty"
-	"github.com/nathanhack/svg/internal"
+	"github.com/seanrmurphy/svg/internal"
 )
 
 var Namespace = "http://www.w3.org/2000/svg"

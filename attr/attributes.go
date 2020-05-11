@@ -1,11 +1,12 @@
 package attr
 
 import (
-	"github.com/gopherjs/vecty"
-	"github.com/nathanhack/svg"
-	"github.com/nathanhack/svg/attr/transforms"
-	"github.com/nathanhack/svg/internal"
 	"strings"
+
+	"github.com/gopherjs/vecty"
+	"github.com/seanrmurphy/svg"
+	"github.com/seanrmurphy/svg/attr/transforms"
+	"github.com/seanrmurphy/svg/internal"
 )
 
 type nameValueAttribute struct {
@@ -1139,7 +1140,7 @@ func VectorEffect(effect string) svg.Attribute {
 
 func ViewBox(minX, minY, width, height svg.Number) svg.Attribute {
 	return &nameValueAttribute{
-		N: "viewbox",
+		N: "viewBox",
 		V: internal.Stringify(minX, " ") +
 			internal.Stringify(minY, " ") +
 			internal.Stringify(width, " ") +

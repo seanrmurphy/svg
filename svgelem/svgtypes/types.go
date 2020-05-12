@@ -72,6 +72,138 @@ func init() {
 	}
 }
 
+func NewMoveToAbsolute(x, y float64) PathElement {
+	return PathElement{
+		Mode:       MoveToAbsolute,
+		Parameters: []float64{x, y},
+	}
+}
+
+func NewMoveToRelative(x, y float64) PathElement {
+	return PathElement{
+		Mode:       MoveToRelative,
+		Parameters: []float64{x, y},
+	}
+}
+
+func NewLineToAbsolute(x, y float64) PathElement {
+	return PathElement{
+		Mode:       LineToAbsolute,
+		Parameters: []float64{x, y},
+	}
+}
+
+func NewLineToRelative(x, y float64) PathElement {
+	return PathElement{
+		Mode:       LineToRelative,
+		Parameters: []float64{x, y},
+	}
+}
+
+func NewHorizontalLineAbsolute(x float64) PathElement {
+	return PathElement{
+		Mode:       HorizontalLineAbsolute,
+		Parameters: []float64{x},
+	}
+}
+
+func NewHorizontalLineRelative(x float64) PathElement {
+	return PathElement{
+		Mode:       HorizontalLineRelative,
+		Parameters: []float64{x},
+	}
+}
+
+func NewVerticalLineAbsolute(y float64) PathElement {
+	return PathElement{
+		Mode:       VerticalLineAbsolute,
+		Parameters: []float64{y},
+	}
+}
+
+func NewVerticalLineRelative(y float64) PathElement {
+	return PathElement{
+		Mode:       VerticalLineRelative,
+		Parameters: []float64{y},
+	}
+}
+
+func NewCubicCurveAbsolute(x1, y1, x2, y2, x, y float64) PathElement {
+	return PathElement{
+		Mode:       CubicCurveAbsolute,
+		Parameters: []float64{x1, y1, x2, y2, x, y},
+	}
+}
+
+func NewCubicCurveRelative(x1, y1, x2, y2, x, y float64) PathElement {
+	return PathElement{
+		Mode:       CubicCurveRelative,
+		Parameters: []float64{x1, y1, x2, y2, x, y},
+	}
+}
+
+func NewShortCubicCurveAbsolute(x2, y2, x, y float64) PathElement {
+	return PathElement{
+		Mode:       ShortCubicCurveAbsolute,
+		Parameters: []float64{x2, y2, x, y},
+	}
+}
+
+func NewShortCubicCurveRelative(x2, y2, x, y float64) PathElement {
+	return PathElement{
+		Mode:       ShortCubicCurveRelative,
+		Parameters: []float64{x2, y2, x, y},
+	}
+}
+
+func NewQuadraticCurveAbsolute(x1, y1, x, y float64) PathElement {
+	return PathElement{
+		Mode:       QuadraticCurveAbsolute,
+		Parameters: []float64{x1, y1, x, y},
+	}
+}
+
+func NewQuadraticCurveRelative(x1, y1, x, y float64) PathElement {
+	return PathElement{
+		Mode:       QuadraticCurveRelative,
+		Parameters: []float64{x1, y1, x, y},
+	}
+}
+
+func NewShortQuadraticCurveAbsolute(x, y float64) PathElement {
+	return PathElement{
+		Mode:       ShortQuadraticCurveAbsolute,
+		Parameters: []float64{x, y},
+	}
+}
+
+func NewShortQuadraticCurveRelative(x, y float64) PathElement {
+	return PathElement{
+		Mode:       ShortQuadraticCurveRelative,
+		Parameters: []float64{x, y},
+	}
+}
+
+func NewArcAbsolute(rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y float64) PathElement {
+	return PathElement{
+		Mode:       ArcAbsolute,
+		Parameters: []float64{rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y},
+	}
+}
+
+func NewArcRelative(rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y float64) PathElement {
+	return PathElement{
+		Mode:       ArcRelative,
+		Parameters: []float64{rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y},
+	}
+}
+
+func NewClosePath() PathElement {
+	return PathElement{
+		Mode: ClosePath,
+	}
+}
+
 // Note that the specification says that there is a limit of 255 characters on
 // this - no checking for this limit is performed here. The specification also
 // notes that elements of the same time can be concatenated; logic to handle this

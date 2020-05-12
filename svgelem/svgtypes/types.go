@@ -42,7 +42,7 @@ type Path struct {
 	Elements []PathElement
 }
 
-type TCircle struct {
+type Circle struct {
 	Radius  float64
 	CentreX float64
 	CentreY float64
@@ -72,7 +72,14 @@ func init() {
 	}
 }
 
-func generatePathWithParameters(e PathElement, params int) (s string) {
+// Note that the specification says that there is a limit of 255 characters on
+// this - no checking for this limit is performed here. The specification also
+// notes that elements of the same time can be concatenated; logic to handle this
+// case is not included here.
+//
+// It is probably sensible to return an error code, particularly for the case that
+// the string ends up being too long.
+func (p *Path) generatePathElementWithParameters(e PathElement, params int) (s string) {
 	if len(e.Parameters) != params {
 		return
 	}
@@ -83,26 +90,33 @@ func generatePathWithParameters(e PathElement, params int) (s string) {
 	return
 }
 
-func GeneratePathString(p Path) (pathString string) {
+func (p *Path) AddElement(e PathElement) {
+	p.Elements = append(p.Elements, e)
+}
+
+func (p *Path) ToString() (pathString string) {
 	for _, e := range p.Elements {
 		s := ""
 		switch e.Mode {
+		// this follows the logic of the specification - it could be optimized
+		// for lines of code, but decided to leave it this way for readability
+		// (a smart compiler prob does this optimization in any case...)
 		case MoveToAbsolute, MoveToRelative, LineToAbsolute, LineToRelative:
-			s = generatePathWithParameters(e, 2)
+			s = p.generatePathElementWithParameters(e, 2)
 		case HorizontalLineAbsolute, HorizontalLineRelative, VerticalLineAbsolute, VerticalLineRelative:
-			s = generatePathWithParameters(e, 1)
+			s = p.generatePathElementWithParameters(e, 1)
 		case CubicCurveAbsolute, CubicCurveRelative:
-			s = generatePathWithParameters(e, 6)
+			s = p.generatePathElementWithParameters(e, 6)
 		case ShortCubicCurveAbsolute, ShortCubicCurveRelative:
-			s = generatePathWithParameters(e, 4)
+			s = p.generatePathElementWithParameters(e, 4)
 		case QuadraticCurveAbsolute, QuadraticCurveRelative:
-			s = generatePathWithParameters(e, 4)
+			s = p.generatePathElementWithParameters(e, 4)
 		case ShortQuadraticCurveAbsolute, ShortQuadraticCurveRelative:
-			s = generatePathWithParameters(e, 2)
+			s = p.generatePathElementWithParameters(e, 2)
 		case ArcAbsolute, ArcRelative:
-			s = generatePathWithParameters(e, 7)
+			s = p.generatePathElementWithParameters(e, 7)
 		case ClosePath:
-			s = generatePathWithParameters(e, 0)
+			s = p.generatePathElementWithParameters(e, 0)
 		}
 		pathString += s + " "
 	}
